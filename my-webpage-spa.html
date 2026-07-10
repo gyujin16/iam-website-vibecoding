@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>황규진 | 탄탄한 백엔드 개발자 포트폴리오</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: 프리텐다드 스타일의 Noto Sans KR 적용 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Noto Sans KR', 'sans-serif'],
+          },
+          colors: {
+            brandBlack: '#0A0A0A',
+            brandDark: '#121212',
+            brandGray: '#1E1E1E',
+            brandLightGray: '#2D2D2D',
+            brandRed: '#FF2E44', // 애플 레드 포인트 🍎
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* 3D Card Flip CSS */
+    .perspective {
+      perspective: 1000px;
+    }
+    .preserve-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    
+    /* 커스텀 스크롤바 디자인 */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0A0A;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #FF2E44;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-brandBlack text-gray-100 font-sans antialiased overflow-x-hidden">
+
+  <!-- 1. 헤더 / 내비게이션 -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-brandBlack/80 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#hero" class="text-xl font-black tracking-tighter text-white">
+        HWANG <span class="text-brandRed">GYUJIN</span>🍎
+      </a>
+      <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+        <a href="#about" class="hover:text-brandRed transition-colors">소개</a>
+        <a href="#cards" class="hover:text-brandRed transition-colors">매력 포인트</a>
+        <a href="#timeline" class="hover:text-brandRed transition-colors">스토리</a>
+        <a href="#taste" class="hover:text-brandRed transition-colors">규진's Pick</a>
+        <a href="#gallery" class="hover:text-brandRed transition-colors">갤러리</a>
+      </nav>
+      <a href="#cta" class="px-5 py-2.5 bg-brandRed text-white text-xs font-bold rounded-full tracking-wider hover:bg-red-600 transition-transform active:scale-95">
+        사과게임 같이하기 🎮
+      </a>
+    </div>
+  </header>
+
+  <!-- 2. 히어로 섹션 (Hero) -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
+    <!-- 배경 장식 그리드 패턴 -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30"></div>
+    
+    <div class="max-w-5xl mx-auto text-center z-10">
+      <!-- 뱃지 -->
+      <span class="inline-block px-4 py-1.5 bg-brandRed/10 border border-brandRed/30 text-brandRed text-sm font-semibold rounded-full mb-6">
+        🔥 백엔드 개발자의 집념과 끈기
+      </span>
+      
+      <!-- 대담한 타이틀 -->
+      <h1 class="text-5xl md:text-8xl font-black tracking-tight leading-none text-white mb-6">
+        황규진<span class="text-brandRed">.</span>
+      </h1>
+      
+      <!-- 캐치프레이즈 -->
+      <p class="text-xl md:text-3xl font-extrabold text-gray-300 max-w-3xl mx-auto leading-snug mb-10">
+        “20kg의 <span class="text-brandRed underline decoration-wavy decoration-2 underline-offset-8">집념</span>으로, 이제는 탄탄한 백엔드를 빌드합니다.”
+      </p>
+      
+      <!-- 첫인상용 그래픽 플레이스홀더 영역 -->
+      <div class="relative w-full max-w-4xl mx-auto h-64 md:h-96 rounded-2xl bg-brandGray border border-white/10 overflow-hidden flex flex-col items-center justify-center group">
+        <div class="absolute inset-0 bg-gradient-to-t from-brandBlack via-transparent to-transparent opacity-60"></div>
+        <!-- 내부 그래픽 데코레이션 -->
+        <div class="absolute w-72 h-72 rounded-full bg-brandRed/10 blur-3xl -top-20 -left-20"></div>
+        <div class="absolute w-72 h-72 rounded-full bg-brandRed/5 blur-3xl -bottom-20 -right-20"></div>
+        
+        <!-- 콘솔 텍스트 스타일 그래픽 -->
+        <div class="z-10 font-mono text-xs md:text-sm text-left text-gray-400 p-6 bg-brandBlack/60 rounded-xl border border-white/5 shadow-2xl max-w-md w-11/12">
+          <p class="text-brandRed"><span class="text-green-500">guest@portfolio:~$</span> cat developer_info.sh</p>
+          <p class="text-gray-300 mt-2"><span class="text-yellow-500">NAME:</span> "Hwang Gyu Jin"</p>
+          <p class="text-gray-300"><span class="text-yellow-500">AGE:</span> 28 (1999.09.02)</p>
+          <p class="text-gray-300"><span class="text-yellow-500">LOCATION:</span> "Gyeonggi Bucheon, Korea"</p>
+          <p class="text-gray-300"><span class="text-yellow-500">PREV_FOCUS:</span> ["Unity3D", "Unreal", "C++", "C#"]</p>
+          <p class="text-gray-300"><span class="text-yellow-500">CURRENT_GOAL:</span> "Robust Backend Developer via SSAFY"</p>
+          <p class="text-gray-300"><span class="text-yellow-500">SPECIAL_SKILL:</span> "20kg_Weight_Loss_Persistence"</p>
+        </div>
+        
+        <p class="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs text-gray-500 font-mono tracking-wider">
+          * 이미지로 대체 가능한 히어로 그래픽 영역
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 소개 섹션 (About) -->
+  <section id="about" class="py-24 px-6 bg-brandDark border-y border-white/5 relative">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+        <!-- 소개 문구 -->
+        <div class="md:col-span-7 space-y-6">
+          <span class="text-xs font-bold tracking-widest text-brandRed uppercase">WHO IS HE?</span>
+          <h2 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">
+            어려운 길을 집념으로 <br>돌파해내는 사람, <span class="text-brandRed">황규진</span>입니다.
+          </h2>
+          <p class="text-gray-400 leading-relaxed text-base md:text-lg">
+            게임 개발자(클라이언트)를 준비하며 탄탄히 쌓아온 <span class="text-white font-semibold">C#, C++, Unity, Unreal Engine</span>에 대한 탄탄한 기본기를 바탕으로, 이제는 세상의 뼈대가 되는 깊이 있는 <span class="text-brandRed font-semibold">백엔드 시스템 구축</span>에 몰입하고 있습니다.
+          </p>
+          <p class="text-gray-400 leading-relaxed text-base md:text-lg">
+            단순히 개발을 좋아하기만 하는 것이 아닌, 스스로 목표한 바는 끝까지 물고 늘어져 성과를 내는 끈기가 저의 가장 강력한 무기입니다. 저의 굳센 고집과 진솔함이 팀에 든든한 신뢰를 줄 수 있다고 확신합니다.
+          </p>
+          <!-- 간단 인포 테이블 -->
+          <div class="grid grid-cols-2 gap-4 pt-4">
+            <div class="p-4 bg-brandGray rounded-xl border border-white/5">
+              <span class="text-xs text-gray-500 block mb-1">MBTI</span>
+              <span class="text-lg font-bold text-white">INFP (열정적인 중재자)</span>
+            </div>
+            <div class="p-4 bg-brandGray rounded-xl border border-white/5">
+              <span class="text-xs text-gray-500 block mb-1">전공</span>
+              <span class="text-lg font-bold text-white">소프트웨어학과</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 이미지 영역 -->
+        <div class="md:col-span-5">
+          <!-- 사용자 직접 프로필 사진 변경 가능한 placeholder 영역 -->
+          <div class="aspect-[3/4] rounded-2xl bg-brandGray border border-white/10 overflow-hidden flex flex-col items-center justify-center p-6 text-center relative group">
+            <div class="absolute inset-0 bg-gradient-to-t from-brandRed/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <!-- 내부 더미 아바타 그래픽 -->
+            <div class="w-24 h-24 rounded-full bg-brandLightGray flex items-center justify-center border-2 border-brandRed mb-4 shadow-xl">
+              <span class="text-4xl">🍎</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">황규진 프로필 영역</h3>
+            <p class="text-xs text-gray-500 mt-2 max-w-[200px] leading-relaxed">
+              (여기에 본인의 멋진 프로필 사진이나 상징 이미지를 직접 수정하여 삽입해 보세요.)
+            </p>
+            <span class="text-[10px] font-mono text-gray-600 mt-6 bg-brandBlack px-2 py-1 rounded">
+              img tag placeholder
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 핵심 매력 포인트 카드 섹션 (Cards) -->
+  <section id="cards" class="py-24 px-6 relative bg-brandBlack">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-xs font-bold tracking-widest text-brandRed uppercase">MY STRENGTH</span>
+        <h2 class="text-3xl md:text-5xl font-black text-white mt-2 mb-4">규진이 가진 3가지 무기</h2>
+        <p class="text-gray-400 text-sm md:text-base">카드를 클릭하면 그가 가진 진짜 가치를 확인하실 수 있습니다.</p>
+      </div>
+
+      <!-- 플립 카드 컨테이너 (그리드 레이아웃) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- 카드 1: 실행력 -->
+        <div class="card-container h-[420px] perspective cursor-pointer" onclick="flipCard(this)">
+          <div class="card-inner w-full h-full duration-700 preserve-3d relative">
+            
+            <!-- 카드 앞면 -->
+            <div class="card-front absolute w-full h-full backface-hidden bg-brandGray border border-white/10 hover:border-brandRed/50 rounded-2xl p-8 flex flex-col justify-between transition-shadow hover:shadow-2xl hover:shadow-brandRed/10">
+              <div class="space-y-4">
+                <div class="text-4xl">🎯</div>
+                <h3 class="text-2xl font-black text-white">01. 실행력</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                  스스로 설정한 엄격한 목표를 완벽하게 현실로 만드는 최고의 집념.
+                </p>
+              </div>
+              <div class="flex items-center justify-between text-xs text-brandRed font-bold uppercase tracking-wider">
+                <span>클릭하여 스토리 열기</span>
+                <span>→</span>
+              </div>
+            </div>
+
+            <!-- 카드 뒷면 -->
+            <div class="card-back absolute w-full h-full backface-hidden rotate-y-180 bg-brandDark border-2 border-brandRed rounded-2xl p-8 flex flex-col justify-between">
+              <div class="space-y-4">
+                <span class="inline-block px-2.5 py-1 bg-brandRed/10 text-brandRed text-xs font-bold rounded">20kg 감량의 집념</span>
+                <h3 class="text-xl font-bold text-white">"독하게 해내는 마음"</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                  개발 공부뿐만 아니라 삶의 영역에서도 끝까지 결과를 봅니다. 공백기 동안 <strong>독하게 마음먹고 20kg을 감량</strong>해 냈습니다. 이 끈기와 몰입감 그대로, 개발 문제와 쿼리 튜닝까지 치열하게 파고들어 백엔드 설계를 탄탄하게 해낼 것입니다.
+                </p>
+              </div>
+              <span class="text-[10px] text-gray-500">다시 클릭하면 닫힙니다</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 카드 2: 성장 잠재력 -->
+        <div class="card-container h-[420px] perspective cursor-pointer" onclick="flipCard(this)">
+          <div class="card-inner w-full h-full duration-700 preserve-3d relative">
+            
+            <!-- 카드 앞면 -->
+            <div class="card-front absolute w-full h-full backface-hidden bg-brandGray border border-white/10 hover:border-brandRed/50 rounded-2xl p-8 flex flex-col justify-between transition-shadow hover:shadow-2xl hover:shadow-brandRed/10">
+              <div class="space-y-4">
+                <div class="text-4xl">🚀</div>
+                <h3 class="text-2xl font-black text-white">02. 성장 잠재력</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                  C++/C#/Unity 지식에 SSAFY의 체계적인 백엔드 교육을 더한 완벽한 전향 준비.
+                </p>
+              </div>
+              <div class="flex items-center justify-between text-xs text-brandRed font-bold uppercase tracking-wider">
+                <span>클릭하여 스토리 열기</span>
+                <span>→</span>
+              </div>
+            </div>
+
+            <!-- 카드 뒷면 -->
+            <div class="card-back absolute w-full h-full backface-hidden rotate-y-180 bg-brandDark border-2 border-brandRed rounded-2xl p-8 flex flex-col justify-between">
+              <div class="space-y-4">
+                <span class="inline-block px-2.5 py-1 bg-brandRed/10 text-brandRed text-xs font-bold rounded">SSAFY 백엔드 마스터</span>
+                <h3 class="text-xl font-bold text-white">"사람 구실 하는 백엔드 개발자로"</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                  단순 개발 수준을 넘어 "진짜 몫을 해내는 백엔드 개발자"로 도약하는 것이 목표입니다. <strong>SSAFY의 혹독한 교육</strong>을 성실하게 버텨내며 깊이 있는 서버 설계, 네트워크, 대용량 트래픽 핸들링을 온전히 제 것으로 흡수하겠습니다.
+                </p>
+              </div>
+              <span class="text-[10px] text-gray-500">다시 클릭하면 닫힙니다</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 카드 3: 친근한 소통력 -->
+        <div class="card-container h-[420px] perspective cursor-pointer" onclick="flipCard(this)">
+          <div class="card-inner w-full h-full duration-700 preserve-3d relative">
+            
+            <!-- 카드 앞면 -->
+            <div class="card-front absolute w-full h-full backface-hidden bg-brandGray border border-white/10 hover:border-brandRed/50 rounded-2xl p-8 flex flex-col justify-between transition-shadow hover:shadow-2xl hover:shadow-brandRed/10">
+              <div class="space-y-4">
+                <div class="text-4xl">🍎</div>
+                <h3 class="text-2xl font-black text-white">03. 친근한 소통력</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                  센스 있고 유쾌한 분위기 메이커. 최고의 시너지와 동료미를 자랑합니다.
+                </p>
+              </div>
+              <div class="flex items-center justify-between text-xs text-brandRed font-bold uppercase tracking-wider">
+                <span>클릭하여 스토리 열기</span>
+                <span>→</span>
+              </div>
+            </div>
+
+            <!-- 카드 뒷면 -->
+            <div class="card-back absolute w-full h-full backface-hidden rotate-y-180 bg-brandDark border-2 border-brandRed rounded-2xl p-8 flex flex-col justify-between">
+              <div class="space-y-4">
+                <span class="inline-block px-2.5 py-1 bg-brandRed/10 text-brandRed text-xs font-bold rounded">위트 있는 소통</span>
+                <h3 class="text-xl font-bold text-white">"사과게임 같이 할 사람!"</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                  진지한 기술 협업부터 위트 있는 일상까지 완벽하게 스며듭니다. 고된 교육과 업무 속에서도 동료들을 즐겁게 하며 함께 끝까지 달릴 수 있는 윤활유 같은 사람입니다. 언제나 <strong>열린 커뮤니케이션</strong>으로 든든한 아군이 되어 드립니다.
+                </p>
+              </div>
+              <span class="text-[10px] text-gray-500">다시 클릭하면 닫힙니다</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 스토리텔링 타임라인 섹션 (Timeline) -->
+  <section id="timeline" class="py-24 px-6 bg-brandDark border-y border-white/5 relative">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-xs font-bold tracking-widest text-brandRed uppercase">MY STORY</span>
+        <h2 class="text-3xl md:text-5xl font-black text-white mt-2">인생의 흐름과 변화의 순간</h2>
+      </div>
+
+      <!-- 타임라인 라인 디자인 -->
+      <div class="relative border-l border-brandRed/30 ml-4 md:ml-32 space-y-12">
+        
+        <!-- STEP 1. INTRO -->
+        <div class="relative pl-8 group">
+          <!-- 타임라인 아이콘 -->
+          <div class="absolute -left-[13px] top-1 bg-brandBlack border-2 border-brandRed w-6 h-6 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform">
+            <div class="w-2.5 h-2.5 bg-brandRed rounded-full"></div>
+          </div>
+          <!-- 날짜/분류 -->
+          <div class="md:absolute md:right-[100%] md:mr-10 md:text-right md:top-1">
+            <span class="text-xs font-mono text-brandRed font-bold uppercase block">STAGE 1</span>
+            <span class="text-sm font-semibold text-gray-400">Intro</span>
+          </div>
+          <!-- 내용 -->
+          <div class="bg-brandGray/50 border border-white/5 rounded-2xl p-6 hover:bg-brandGray transition-all">
+            <h4 class="text-lg font-bold text-white mb-2">"독기와 끈기로 일어서다"</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              탄탄한 게임엔진 다루던 실력에서 멈추지 않고, 세상에 더 넓은 영향력을 선사하는 백엔드 개발자로서의 강렬한 출사표를 던지다.
+            </p>
+          </div>
+        </div>
+
+        <!-- STEP 2. IDENTITY -->
+        <div class="relative pl-8 group">
+          <!-- 타임라인 아이콘 -->
+          <div class="absolute -left-[13px] top-1 bg-brandBlack border-2 border-brandRed w-6 h-6 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform">
+            <div class="w-2.5 h-2.5 bg-brandRed rounded-full"></div>
+          </div>
+          <!-- 날짜/분류 -->
+          <div class="md:absolute md:right-[100%] md:mr-10 md:text-right md:top-1">
+            <span class="text-xs font-mono text-brandRed font-bold uppercase block">STAGE 2</span>
+            <span class="text-sm font-semibold text-gray-400">Identity</span>
+          </div>
+          <!-- 내용 -->
+          <div class="bg-brandGray/50 border border-white/5 rounded-2xl p-6 hover:bg-brandGray transition-all">
+            <h4 class="text-lg font-bold text-white mb-2">"20kg 감량과 백엔드로의 전향"</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              단순한 생각에 그치지 않고 공백기 동안 <strong>20kg을 혹독하게 감량</strong>하며 '독기'를 스스로에게 증명했습니다. 이를 밑거름 삼아 SSAFY 교육을 이수하며, 든든한 백엔드 개발자로 거듭나기 위한 본격적 몰입을 시작했습니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- STEP 3. TASTE -->
+        <div class="relative pl-8 group">
+          <!-- 타임라인 아이콘 -->
+          <div class="absolute -left-[13px] top-1 bg-brandBlack border-2 border-brandRed w-6 h-6 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform">
+            <div class="w-2.5 h-2.5 bg-brandRed rounded-full"></div>
+          </div>
+          <!-- 날짜/분류 -->
+          <div class="md:absolute md:right-[100%] md:mr-10 md:text-right md:top-1">
+            <span class="text-xs font-mono text-brandRed font-bold uppercase block">STAGE 3</span>
+            <span class="text-sm font-semibold text-gray-400">Taste</span>
+          </div>
+          <!-- 내용 -->
+          <div class="bg-brandGray/50 border border-white/5 rounded-2xl p-6 hover:bg-brandGray transition-all">
+            <h4 class="text-lg font-bold text-white mb-2">"규진's 짙은 고유성(Taste)"</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              취향이 뚜렷한 사람일수록 개성 있는 로직을 설계할 수 있습니다. 스릴 넘치는 공포영화 <strong>'군체'</strong>를 보고, 플레이리스트에는 깊은 울림의 <strong>'0+0'</strong>을 담고, 웅장한 서사의 명작 <strong>'진격의 거인'</strong>을 즐기며 열정을 리프레시합니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- STEP 4. OUTRO -->
+        <div class="relative pl-8 group">
+          <!-- 타임라인 아이콘 -->
+          <div class="absolute -left-[13px] top-1 bg-brandBlack border-2 border-brandRed w-6 h-6 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform">
+            <div class="w-2.5 h-2.5 bg-brandRed rounded-full"></div>
+          </div>
+          <!-- 날짜/분류 -->
+          <div class="md:absolute md:right-[100%] md:mr-10 md:text-right md:top-1">
+            <span class="text-xs font-mono text-brandRed font-bold uppercase block">STAGE 4</span>
+            <span class="text-sm font-semibold text-gray-400">Outro</span>
+          </div>
+          <!-- 내용 -->
+          <div class="bg-brandGray/50 border border-white/5 rounded-2xl p-6 hover:bg-brandGray transition-all">
+            <h4 class="text-lg font-bold text-white mb-2">"겸손하되 당차게, 사과게임 한판!"</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              "정말 많이 부족하지만 그만큼 배우고자 노력하겠습니다." 라는 뜨거운 열정으로, 사람들과 위트 있게 '사과게임' 한 판 즐기며 유쾌한 동료가 될 준비를 마쳤습니다.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 규진's Pick 취향 설명 섹션 (Taste) -->
+  <section id="taste" class="py-24 px-6 bg-brandBlack relative">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-xs font-bold tracking-widest text-brandRed uppercase">GYUJIN'S PICK</span>
+        <h2 class="text-3xl md:text-5xl font-black text-white mt-2">규진의 활력소: 영화, 음악, 애니</h2>
+        <p class="text-gray-400 text-sm md:text-base">어려운 난관 속에서도 나를 다시 뛰게 해 주는 3가지 예술 세계</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- 영화: 군체 -->
+        <div class="bg-brandGray rounded-2xl border border-white/10 overflow-hidden hover:scale-105 transition-transform duration-300">
+          <div class="aspect-video bg-neutral-800 flex items-center justify-center text-center relative group p-4">
+            <!-- 이미지 대체 영역 -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div class="z-10 text-center">
+              <span class="text-4xl">🎬</span>
+              <p class="text-xs text-gray-400 mt-2">[영화 군체 관련 이미지]</p>
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="text-xs font-semibold text-brandRed bg-brandRed/10 px-2 py-1 rounded">MOOVE / HORROR</span>
+            <h3 class="text-xl font-bold text-white">영화: 군체 (The Hive)</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              공포 영화 매니아가 추천하는 숨 막히는 서스펜스. 쫄깃하고 탄탄한 빌드업을 통해 극도의 긴장감을 주는 공포영화에서 영감을 얻습니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- 음악: 0+0 -->
+        <div class="bg-brandGray rounded-2xl border border-white/10 overflow-hidden hover:scale-105 transition-transform duration-300">
+          <div class="aspect-video bg-neutral-800 flex items-center justify-center text-center relative group p-4">
+            <!-- 이미지 대체 영역 -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div class="z-10 text-center">
+              <span class="text-4xl">🎵</span>
+              <p class="text-xs text-gray-400 mt-2">[음악 0+0 앨범 커버]</p>
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="text-xs font-semibold text-brandRed bg-brandRed/10 px-2 py-1 rounded">MUSIC / K-POP</span>
+            <h3 class="text-xl font-bold text-white">음악: 0+0</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              요즘 나의 무한 반복 플레이리스트. 깊이 있는 리듬과 멜로디에 감정을 기대며 하루의 지친 개발 피로를 녹여주는 비타민 같은 곡입니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- 애니메이션: 진격의 거인 -->
+        <div class="bg-brandGray rounded-2xl border border-white/10 overflow-hidden hover:scale-105 transition-transform duration-300">
+          <div class="aspect-video bg-neutral-800 flex items-center justify-center text-center relative group p-4">
+            <!-- 이미지 대체 영역 -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div class="z-10 text-center">
+              <span class="text-4xl">⚔️</span>
+              <p class="text-xs text-gray-400 mt-2">[진격의 거인 포스터]</p>
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="text-xs font-semibold text-brandRed bg-brandRed/10 px-2 py-1 rounded">ANIME / MASTERPIECE</span>
+            <h3 class="text-xl font-bold text-white">애니: 진격의 거인</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              거대한 장벽을 부수고 결국엔 나아가는 주인공의 모습. 치밀하게 완결된 웅장한 각본처럼, 저 또한 빈틈없는 완벽한 백엔드 아키텍처를 그립니다.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. 갤러리 섹션 (Gallery) -->
+  <section id="gallery" class="py-24 px-6 bg-brandDark border-y border-white/5 relative">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-xs font-bold tracking-widest text-brandRed uppercase">GALLERY</span>
+        <h2 class="text-3xl md:text-5xl font-black text-white mt-2">일상을 채우는 작은 흔적들</h2>
+        <p class="text-gray-400 text-sm md:text-base mt-2">규진의 과거 취미(컴퓨터 게임, 볼링, 헬스)와 열정의 여정을 시각적으로 만나보세요.</p>
+      </div>
+
+      <!-- 6장 그리드 레이아웃 -->
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+        
+        <!-- 갤러리 1 -->
+        <div class="group relative aspect-square bg-brandGray border border-white/10 rounded-2xl overflow-hidden flex flex-col items-center justify-center text-center p-4">
+          <div class="absolute inset-0 bg-brandRed/40 opacity-0 group-hover:opacity-80 transition-opacity flex items-center justify-center z-10 p-4">
+            <span class="text-white text-sm font-bold">💪 헬스 (운동)<br><span class="text-xs font-normal">20kg 감량의 주역</span></span>
+          </div>
+          <span class="text-4xl mb-2">🏋️</span>
+          <span class="text-xs text-gray-500 font-mono">[Image-01: 헬스/운동]</span>
+        </div>
+
+        <!-- 갤러리 2 -->
+        <div class="group relative aspect-square bg-brandGray border border-white/10 rounded-2xl overflow-hidden flex flex-col items-center justify-center text-center p-4">
+          <div class="absolute inset-0 bg-brandRed/40 opacity-0 group-hover:opacity-80 transition-opacity flex items-center justify-center z-10 p-4">
+            <span class="text-white text-sm font-bold">🎮 컴퓨터 게임<br><span class="text-xs font-normal">클라이언트 개발의 영감</span></span>
+          </div>
+          <span class="text-4xl mb-2">💻</span>
+          <span class="text-xs text-gray-500 font-mono">[Image-02: 컴퓨터 게임]</span>
+        </div>
+
+        <!-- 갤러리 3 -->
+        <div class="group relative aspect-square bg-brandGray border border-white/10 rounded-2xl overflow-hidden flex flex-col items-center justify-center text-center p-4">
+          <div class="absolute inset-0 bg-brandRed/40 opacity-0 group-hover:opacity-80 transition-opacity flex items-center justify-center z-10 p-4">
+            <span class="text-white text-sm font-bold">🎳 볼링<br><span class="text-xs font-normal">정확하고 시원한 한판 승부</span></span>
+          </div>
+          <span class="text-4xl mb-2">🎳</span>
+          <span class="text-xs text-gray-500 font-mono">[Image-03: 볼링]</span>
+        </div>
+
+        <!-- 갤러리 4 -->
+        <div class="group relative aspect-square bg-brandGray border border-white/10 rounded-2xl overflow-hidden flex flex-col items-center justify-center text-center p-4">
+          <div class="absolute inset-0 bg-brandRed/40 opacity-0 group-hover:opacity-80 transition-opacity flex items-center justify-center z-10 p-4">
+            <span class="text-white text-sm font-bold">💻 코딩 & 빌드<br><span class="text-xs font-normal">Unity, Unreal 에서 백엔드로</span></span>
+          </div>
+          <span class="text-4xl mb-2">⚙️</span>
+          <span class="text-xs text-gray-500 font-mono">[Image-04: 개발환경]</span>
+        </div>
+
+        <!-- 갤러리 5 -->
+        <div class="group relative aspect-square bg-brandGray border border-white/10 rounded-2xl overflow-hidden flex flex-col items-center justify-center text-center p-4">
+          <div class="absolute inset-0 bg-brandRed/40 opacity-0 group-hover:opacity-80 transition-opacity flex items-center justify-center z-10 p-4">
+            <span class="text-white text-sm font-bold">🍎 사과게임<br><span class="text-xs font-normal">집에서 가벼운 소통 시간</span></span>
+          </div>
+          <span class="text-4xl mb-2">🍏</span>
+          <span class="text-xs text-gray-500 font-mono">[Image-05: 사과게임]</span>
+        </div>
+
+        <!-- 갤러리 6 -->
+        <div class="group relative aspect-square bg-brandGray border border-white/10 rounded-2xl overflow-hidden flex flex-col items-center justify-center text-center p-4">
+          <div class="absolute inset-0 bg-brandRed/40 opacity-0 group-hover:opacity-80 transition-opacity flex items-center justify-center z-10 p-4">
+            <span class="text-white text-sm font-bold">🎓 SSAFY 교육 일상<br><span class="text-xs font-normal">성장하는 하루하루</span></span>
+          </div>
+          <span class="text-4xl mb-2">🤝</span>
+          <span class="text-xs text-gray-500 font-mono">[Image-06: SSAFY 협업]</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CTA & 사과게임 초대 섹션 (CTA) -->
+  <section id="cta" class="py-24 px-6 bg-brandBlack relative">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="relative inline-block bg-brandGray border-2 border-brandRed rounded-3xl p-10 md:p-16 overflow-hidden w-full max-w-2xl mx-auto">
+        <!-- 배경 데코레이션 사과 아이콘 -->
+        <div class="absolute -right-8 -top-8 text-8xl opacity-10 select-none">🍎</div>
+        
+        <h3 class="text-2xl md:text-4xl font-extrabold text-white mb-4">
+          "정말 많이 부족하지만,<br>그만큼 배우고자 노력하겠습니다."
+        </h3>
+        <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-8">
+          포용력 있는 마인드로 늘 스펀지처럼 빠르게 습득하겠습니다. <br>
+          저의 무한한 에너지를 팀에 녹이고 싶습니다.
+        </p>
+
+        <!-- 위트 있는 사과게임 제안 카드형 버튼 -->
+        <div class="bg-brandBlack border border-white/10 rounded-2xl p-6 hover:border-brandRed/50 transition-all duration-300">
+          <h4 class="text-lg font-bold text-white mb-2">🍎 집에서 사과게임 같이 할 사람?</h4>
+          <p class="text-xs text-gray-500 mb-4">지금 바로 MM(메시지) 주세요! 함께 고득점 찍으실 분 언제나 환영합니다.</p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="mailto:ghkdrbwls99@gmail.com" class="px-6 py-3 bg-brandRed hover:bg-red-600 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-brandRed/20 active:scale-95">
+              이메일로 MM 보내기 📧
+            </a>
+            <a href="tel:010-6538-4774" class="px-6 py-3 bg-brandLightGray hover:bg-neutral-700 text-white font-bold rounded-xl text-sm transition-all active:scale-95">
+              010-6538-4774 📞
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. 푸터 (Footer) -->
+  <footer class="bg-brandDark border-t border-white/5 py-12 px-6">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+        <h4 class="text-lg font-extrabold text-white">HWANG GYUJIN</h4>
+        <p class="text-xs text-gray-500 mt-1">© 2026 Hwang Gyu Jin. All Rights Reserved.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4 text-xs text-gray-400 text-center md:text-right">
+        <div>
+          <span class="block text-gray-600">EMAIL</span>
+          <a href="mailto:ghkdrbwls99@gmail.com" class="hover:text-brandRed transition-colors">ghkdrbwls99@gmail.com</a>
+        </div>
+        <div>
+          <span class="block text-gray-600">CONTACT</span>
+          <a href="tel:010-6538-4774" class="hover:text-brandRed transition-colors">010-6538-4774</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 인터랙션 스크립트 -->
+  <script>
+    /**
+     * 카드를 클릭했을 때 뒤집히는 플립 인터랙션 함수
+     * @param {HTMLElement} container - 클릭된 카드 컨테이너 요소
+     */
+    function flipCard(container) {
+      // 3D 회전을 담당하는 inner 요소를 찾아 처리합니다.
+      const inner = container.querySelector('.card-inner');
+      if (inner) {
+        // 이미 회전된 상태라면 원상복구하고, 아니면 180도 회전시킵니다.
+        if (inner.style.transform === 'rotateY(180deg)') {
+          inner.style.transform = 'rotateY(0deg)';
+        } else {
+          inner.style.transform = 'rotateY(180deg)';
+        }
+      }
+    }
+  </script>
+</body>
+</html>
