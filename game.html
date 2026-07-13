@@ -56,14 +56,14 @@
   <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
     <!-- 로고 영역 -->
     <a href="index.html" class="text-xl font-black tracking-tighter text-white">
-      HWANG <span class="text-[#FF2E44]">GYUJIN</span>🍎
+      HWANG <span class="text-[#FF2E44]">GYUJIN</span>
     </a>
 
     <!-- 데스크톱 네비게이션 메뉴 -->
     <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide h-full items-center">
-      <a href="index.html" class="text-gray-400 hover:text-[#FF2E44] px-1 py-2 transition-colors">홈 (소개)</a>
+      <a href="index.html" class="text-gray-400 hover:text-[#FF2E44] px-1 py-2 transition-colors">소개</a>
       <a href="gallery.html" class="text-gray-400 hover:text-[#FF2E44] px-1 py-2 transition-colors">갤러리</a>
-      <a href="game.html" class="text-[#FF2E44] border-b-2 border-[#FF2E44] px-1 py-2 transition-colors">사과게임</a>
+      <a href="game.html" class="text-[#FF2E44] border-b-2 border-[#FF2E44] px-1 py-2 transition-colors">놀이터</a>
     </nav>
 
     <!-- 모바일 햄버거 버튼 -->
@@ -77,9 +77,9 @@
   <!-- 모바일 드롭다운 메뉴 (기본값: hidden 숨김) -->
   <div id="mobile-menu" class="hidden md:hidden bg-[#121212] border-b border-white/5 w-full px-6 py-4 transition-all">
     <nav class="flex flex-col space-y-4 text-sm font-medium tracking-wide">
-      <a href="index.html" class="text-gray-400 hover:text-[#FF2E44] py-1">홈 (소개)</a>
+      <a href="index.html" class="text-gray-400 hover:text-[#FF2E44] py-1">소개</a>
       <a href="gallery.html" class="text-gray-400 hover:text-[#FF2E44] py-1">갤러리</a>
-      <a href="game.html" class="text-[#FF2E44] py-1">사과게임</a>
+      <a href="game.html" class="text-[#FF2E44] py-1">놀이터</a>
     </nav>
   </div>
 </header>
@@ -108,7 +108,7 @@
       <div class="absolute -right-8 -top-8 text-8xl opacity-10 select-none">🍎</div>
 
       <h3 class="text-2xl md:text-4xl font-extrabold text-white mb-4">
-        "정말 많이 부족하지만,<br>그만큼 배우고자 노력하겠습니다."
+        정말 많이 부족하지만,<br>그만큼 배우고자 노력하겠습니다.
       </h3>
       <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-8">
         포용력 있는 마인드로 늘 스펀지처럼 빠르게 습득하겠습니다. <br>
@@ -121,7 +121,7 @@
         
         <div class="flex items-center justify-between mb-4 border-b border-white/5 pb-2">
           <span class="text-xs font-mono text-[#FF2E44] font-bold uppercase tracking-wider">Contact Card</span>
-          <span class="text-[10px] text-gray-500 font-mono">Seoul 9_Class</span>
+          <span class="text-[10px] text-gray-500 font-mono">Java Track</span>
         </div>
         
         <div class="space-y-3">
@@ -132,6 +132,10 @@
           <div class="flex items-center gap-3">
             <span class="text-gray-500 text-xs w-16 uppercase font-mono">Contact</span>
             <span class="text-gray-300 font-mono text-sm">010-6538-4774</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-gray-500 text-xs w-16 uppercase font-mono">E-mail</span>
+            <span class="text-gray-300 font-mono text-sm">ghkdrbwls99@gmail.com</span>
           </div>
         </div>
       </div>
@@ -149,7 +153,7 @@
 
 
 <!-- =======================================================================
-  [메인 콘텐츠] 사과게임 영역 (제한시간 15초 단축 버전)
+  [메인 콘텐츠] 사과게임 영역
 ======================================================================= -->
 <main class="flex-grow flex flex-col items-center justify-center px-6 py-12 bg-brandDark">
   <div class="max-w-4xl w-full text-center">
@@ -186,7 +190,7 @@
               제한 시간 10초 동안 최대한 많은 사과를 바구니에 담아 높은 점수를 기록해 보세요!
             </p>
             
-            <!-- 플레이어 닉네임 입력 필드 추가 -->
+            <!-- 플레이어 닉네임 입력 필드 -->
             <div class="mb-5 text-left">
               <label for="nickname" class="block text-[10px] font-bold text-gray-500 uppercase mb-1.5 tracking-wider">플레이어 닉네임</label>
               <input type="text" id="nickname" class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF2E44] transition-colors" placeholder="닉네임을 입력하세요" value="GUEST_1" maxlength="12">
@@ -205,7 +209,7 @@
         <button id="btn-right" class="bg-white/5 border border-white/5 text-white py-4 rounded-xl font-bold active:bg-white/10 select-none">RIGHT ▶</button>
       </div>
 
-      <!-- 명예의 전당 랭킹보드 추가 -->
+      <!-- 명예의 전당 랭킹보드 -->
       <div class="mt-8 border-t border-white/5 pt-6 text-left">
         <div class="flex items-center gap-2 mb-4">
           <span class="text-lg">🏆</span>
@@ -232,7 +236,7 @@
 
 
 <!-- =======================================================================
-  [공통 컴포넌트] 푸터 영역 (연락처 링크 대응)
+  [공통 컴포넌트] 푸터 영역
 ======================================================================= -->
 <footer id="footer" class="bg-[#121212] border-t border-white/5 py-12 px-6">
   <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
@@ -279,15 +283,15 @@
   canvas.width = BASE_WIDTH;
   canvas.height = BASE_HEIGHT;
 
-  // 게임 변수 (제한시간 10초 세팅)
+  // 게임 핵심 제어 상태 변수
   let score = 0;
   let timeLeft = 10;
   let isPlaying = false;
   let gameLoopId = null;
   let timerId = null;
-  let currentPlayerNickname = 'GUEST_1'; // 현재 플레이어 닉네임 세션 변수
+  let currentPlayerNickname = 'GUEST_1'; // 현재 플레이어 닉네임
 
-  // 바구니 데이터
+  // 바구니 데이터 정의
   const basket = {
     x: BASE_WIDTH / 2 - 60,
     y: BASE_HEIGHT - 50,
@@ -297,7 +301,7 @@
     dx: 0
   };
 
-  // 사과 배열 및 설정
+  // 사과 배열 및 타입 설정 (가시성 및 불투명도 보강)
   let apples = [];
   const APPLE_TYPES = {
     RED: { color: '#FF2E44', score: 10, radius: 18, emoji: '🍎', speedMin: 3.5, speedMax: 6.5 },
@@ -332,8 +336,23 @@
   btnRight.addEventListener('touchstart', (e) => { e.preventDefault(); keys.Right = true; });
   btnRight.addEventListener('touchend', () => keys.Right = false);
 
-  // 사과 생성 함수
-  // 게임 시작 초기화 (10초 기준으로 게임 리셋)
+  // 사과 생성 함수 (누락 복구 및 렌더링 물리 값 정의)
+  function createApple() {
+    const isGold = Math.random() < 0.15; // 15% 확률로 황금사과 등장
+    const type = isGold ? APPLE_TYPES.GOLD : APPLE_TYPES.RED;
+    
+    apples.push({
+      x: Math.random() * (BASE_WIDTH - 60) + 30,
+      y: -30,
+      color: type.color,
+      score: type.score,
+      radius: type.radius,
+      emoji: type.emoji,
+      speed: Math.random() * (type.speedMax - type.speedMin) + type.speedMin
+    });
+  }
+
+  // 게임 시작 초기화 (10초 세팅 및 리셋 루프 연동)
   function startGame() {
     currentPlayerNickname = nicknameInput.value.trim() || 'GUEST_1';
 
@@ -460,69 +479,78 @@
   function update() {
     if (!isPlaying) return;
 
-    // 바구니 키보드 이동 로직
-    if (keys.Left) basket.x -= basket.speed;
-    if (keys.Right) basket.x += basket.speed;
+    try {
+      // 바구니 키보드 이동 로직
+      if (keys.Left) basket.x -= basket.speed;
+      if (keys.Right) basket.x += basket.speed;
 
-    // 화면 경계 이탈 방지 벽면 바운더리 검사
-    if (basket.x < 0) basket.x = 0;
-    if (basket.x > BASE_WIDTH - basket.width) basket.x = BASE_WIDTH - basket.width;
+      // 화면 경계 이탈 방지 벽면 바운더리 검사
+      if (basket.x < 0) basket.x = 0;
+      if (basket.x > BASE_WIDTH - basket.width) basket.x = BASE_WIDTH - basket.width;
 
-    // 캔버스 클리어 및 프레임 갱신
-    ctx.clearRect(0, 0, BASE_WIDTH, BASE_HEIGHT);
+      // 캔버스 클리어 및 프레임 갱신
+      ctx.clearRect(0, 0, BASE_WIDTH, BASE_HEIGHT);
 
-    // 일정 확률 패턴에 기반한 사과 지속 드랍
-    if (Math.random() < 0.04) {
-      createApple();
-    }
-
-    // 사과 렌더링 및 충돌 계산 루프
-    for (let i = apples.length - 1; i >= 0; i--) {
-      const apple = apples[i];
-      apple.y += apple.speed;
-
-      // 그래픽스 드로잉: 예쁜 이모지 매핑 및 가시성 보강
-      ctx.save();
-      ctx.globalAlpha = 1.0; // 투명도 제거: 100% 불투명하도록 명시적 설정
-      ctx.shadowColor = 'rgba(255, 255, 255, 0.55)'; // 어두운 화면에서 돋보이도록 흰색 야광 광원 이펙트 추가
-      ctx.shadowBlur = 10; // 블러를 주어 더 선명하게 돋보이게 처리
-      ctx.font = "40px serif"; // 사과 이모지 크기를 기존 32px에서 40px로 키워 시인성 대폭 확장
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText(apple.emoji, apple.x, apple.y);
-      ctx.restore(); // 드로잉 설정 리셋
-
-      // 충돌 감지 (바구니 수집 조건문 체크)
-      if (
-        apple.y + apple.radius >= basket.y &&
-        apple.y - apple.radius <= basket.y + basket.height &&
-        apple.x >= basket.x &&
-        apple.x <= basket.x + basket.width
-      ) {
-        score += apple.score;
-        scoreEl.innerText = score;
-        apples.splice(i, 1);
-        continue;
+      // 일정 확률 패턴에 기반한 사과 지속 드랍
+      if (Math.random() < 0.04) {
+        createApple();
       }
 
-      // 화면 하단 경계 이탈 시 배열 리소스 정리
-      if (apple.y > BASE_HEIGHT + 20) {
-        apples.splice(i, 1);
+      // 사과 렌더링 및 충돌 계산 루프
+      for (let i = apples.length - 1; i >= 0; i--) {
+        const apple = apples[i];
+        apple.y += apple.speed;
+
+        // 그래픽스 드로잉: 예쁜 이모지 매핑 및 가시성 보강
+        ctx.save();
+        ctx.globalAlpha = 1.0; // 100% 불투명 명시적 설정
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.55)'; // 야광 광원 이펙트
+        ctx.shadowBlur = 10;
+        ctx.font = "40px serif"; // 선명도 향상
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(apple.emoji, apple.x, apple.y);
+        ctx.restore(); // 설정 리셋
+
+        // 충돌 감지 (바구니 수집 조건문 체크)
+        if (
+          apple.y + apple.radius >= basket.y &&
+          apple.y - apple.radius <= basket.y + basket.height &&
+          apple.x >= basket.x &&
+          apple.x <= basket.x + basket.width
+        ) {
+          score += apple.score;
+          scoreEl.innerText = score;
+          apples.splice(i, 1);
+          continue;
+        }
+
+        // 화면 하단 경계 이탈 시 배열 리소스 정리
+        if (apple.y > BASE_HEIGHT + 20) {
+          apples.splice(i, 1);
+        }
       }
+
+      // 바구니 스타일 렌더링 (구형 브라우저 호환을 위해 roundRect 검증 후 예외처리 적용)
+      ctx.fillStyle = '#FF2E44';
+      ctx.beginPath();
+      if (typeof ctx.roundRect === 'function') {
+        ctx.roundRect(basket.x, basket.y, basket.width, basket.height, 10);
+      } else {
+        ctx.rect(basket.x, basket.y, basket.width, basket.height);
+      }
+      ctx.fill();
+
+      // 바구니 상단 은은한 하이라이트 레이어 추가
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+      ctx.fillRect(basket.x + 10, basket.y + 3, basket.width - 20, 3);
+
+      // 반복 프레임 요청 호출 재귀 구조 연동
+      gameLoopId = requestAnimationFrame(update);
+    } catch (err) {
+      console.error("Game loop error: ", err);
+      endGame();
     }
-
-    // 바구니 스타일링 렌더링 (애플 레드 액센트 테마 스타일 디자인)
-    ctx.fillStyle = '#FF2E44';
-    ctx.beginPath();
-    ctx.roundRect(basket.x, basket.y, basket.width, basket.height, 10);
-    ctx.fill();
-
-    // 바구니 상단 은은한 하이라이트 레이어 추가
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-    ctx.fillRect(basket.x + 10, basket.y + 3, basket.width - 20, 3);
-
-    // 반복 프레임 요청 호출 재귀 구조 연동
-    gameLoopId = requestAnimationFrame(update);
   }
 
   // 스타트 버튼 리스너 바인딩
