@@ -1,0 +1,51 @@
+<!-- =======================================================================
+  [공통 컴포넌트] 반응형 네비게이션 바 (통합 및 정리 버전)
+======================================================================= -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#0A0A0A]/80 backdrop-blur-md border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <!-- 로고 영역 -->
+    <a href="index.html" class="text-xl font-black tracking-tighter text-white">
+      HWANG <span class="text-[#FF2E44]">GYUJIN</span>🍎
+    </a>
+
+    <!-- 데스크톱 네비게이션 메뉴 -->
+    <!-- [안내] 현재 보고 있는 페이지 링크에 'text-[#FF2E44] border-b-2 border-[#FF2E44]' 클래스를 유지해 주세요. -->
+    <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide h-full items-center">
+      <a href="index.html" class="text-[#FF2E44] border-b-2 border-[#FF2E44] px-1 py-2 transition-colors">홈 (소개)</a>
+      <a href="gallery.html" class="text-gray-400 hover:text-[#FF2E44] px-1 py-2 transition-colors">갤러리</a>
+      <a href="game.html" class="text-gray-400 hover:text-[#FF2E44] px-1 py-2 transition-colors">사과게임</a>
+    </nav>
+
+    <!-- 모바일 햄버거 버튼 -->
+    <button id="menu-toggle-btn" class="block md:hidden text-white focus:outline-none p-2" aria-label="메뉴 열기">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- 모바일 드롭다운 메뉴 (기본값: hidden 숨김) -->
+  <div id="mobile-menu" class="hidden md:hidden bg-[#121212] border-b border-white/5 w-full px-6 py-4 transition-all">
+    <nav class="flex flex-col space-y-4 text-sm font-medium tracking-wide">
+      <a href="index.html" class="text-[#FF2E44] py-1">홈 (소개)</a>
+      <a href="gallery.html" class="text-gray-400 hover:text-[#FF2E44] py-1">갤러리</a>
+      <a href="game.html" class="text-gray-400 hover:text-[#FF2E44] py-1">사과게임</a>
+    </nav>
+  </div>
+</header>
+
+<!-- =======================================================================
+  [공통 스크립트] 햄버거 메뉴 토글 로직
+======================================================================= -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('menu-toggle-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (toggleBtn && mobileMenu) {
+      toggleBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  });
+</script>
