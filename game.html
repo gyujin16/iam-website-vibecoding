@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HWANG GYUJIN - 사과게임</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans KR', 'sans-serif'],
+          },
+          colors: {
+            brandBlack: '#0A0A0A',
+            brandDark: '#121212',
+            brandGray: '#1E1E1E',
+            brandLightGray: '#2D2D2D',
+            brandRed: '#FF2E44', // 애플 레드 포인트 🍎
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    }
+    /* 커스텀 스크롤바 디자인 */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0A0A;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #FF2E44;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-[#0A0A0A] text-gray-100 min-h-screen pt-20 flex flex-col justify-between overflow-x-hidden">
+
+<!-- =======================================================================
+  [공통 컴포넌트] 반응형 네비게이션 바
+======================================================================= -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#0A0A0A]/80 backdrop-blur-md border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <!-- 로고 영역 -->
+    <a href="index.html" class="text-xl font-black tracking-tighter text-white">
+      HWANG <span class="text-[#FF2E44]">GYUJIN</span>🍎
+    </a>
+
+    <!-- 데스크톱 네비게이션 메뉴 -->
+    <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide h-full items-center">
+      <a href="index.html" class="text-gray-400 hover:text-[#FF2E44] px-1 py-2 transition-colors">홈 (소개)</a>
+      <a href="gallery.html" class="text-gray-400 hover:text-[#FF2E44] px-1 py-2 transition-colors">갤러리</a>
+      <a href="game.html" class="text-[#FF2E44] border-b-2 border-[#FF2E44] px-1 py-2 transition-colors">사과게임</a>
+    </nav>
+
+    <!-- 모바일 햄버거 버튼 -->
+    <button id="menu-toggle-btn" class="block md:hidden text-white focus:outline-none p-2" aria-label="메뉴 열기">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- 모바일 드롭다운 메뉴 (기본값: hidden 숨김) -->
+  <div id="mobile-menu" class="hidden md:hidden bg-[#121212] border-b border-white/5 w-full px-6 py-4 transition-all">
+    <nav class="flex flex-col space-y-4 text-sm font-medium tracking-wide">
+      <a href="index.html" class="text-gray-400 hover:text-[#FF2E44] py-1">홈 (소개)</a>
+      <a href="gallery.html" class="text-gray-400 hover:text-[#FF2E44] py-1">갤러리</a>
+      <a href="game.html" class="text-[#FF2E44] py-1">사과게임</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('menu-toggle-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (toggleBtn && mobileMenu) {
+      toggleBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  });
+</script>
+
+
+<!-- =======================================================================
+  8. CTA & 사과게임 초대 섹션 (상단 배치)
+======================================================================= -->
+<section id="cta" class="py-20 px-6 bg-brandBlack relative">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="relative inline-block bg-brandGray border-2 border-[#FF2E44]/50 rounded-3xl p-10 md:p-16 overflow-hidden w-full max-w-2xl mx-auto shadow-2xl">
+      <!-- 배경 데코레이션 사과 아이콘 -->
+      <div class="absolute -right-8 -top-8 text-8xl opacity-10 select-none">🍎</div>
+
+      <h3 class="text-2xl md:text-4xl font-extrabold text-white mb-4">
+        "정말 많이 부족하지만,<br>그만큼 배우고자 노력하겠습니다."
+      </h3>
+      <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-8">
+        포용력 있는 마인드로 늘 스펀지처럼 빠르게 습득하겠습니다. <br>
+        친근하게 소통하도록 노력하겠습니다.
+      </p>
+
+      <!-- 통합 프로필 명함 (Display Only) -->
+      <div class="bg-[#0A0A0A] border border-white/10 rounded-2xl p-6 text-left max-w-sm mx-auto mb-8 relative overflow-hidden shadow-lg select-none">
+        <div class="absolute -right-6 -bottom-6 w-20 h-20 bg-[#FF2E44]/5 rounded-full blur-xl"></div>
+        
+        <div class="flex items-center justify-between mb-4 border-b border-white/5 pb-2">
+          <span class="text-xs font-mono text-[#FF2E44] font-bold uppercase tracking-wider">Contact Card</span>
+          <span class="text-[10px] text-gray-500 font-mono">Seoul 9_Class</span>
+        </div>
+        
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="text-gray-500 text-xs w-16 uppercase font-mono">Name</span>
+            <span class="text-white font-bold text-sm">황규진 <span class="text-xs font-normal text-gray-400 ml-1">(서울_9반)</span></span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-gray-500 text-xs w-16 uppercase font-mono">Contact</span>
+            <span class="text-gray-300 font-mono text-sm">010-6538-4774</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 사과게임 PLAY 버튼 -->
+      <div class="flex justify-center">
+        <a href="https://apple.oshizi.com/ko/" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-[#FF2E44] hover:bg-red-600 text-white font-black rounded-xl text-sm transition-all duration-300 shadow-lg shadow-[#FF2E44]/30 hover:scale-[1.03] active:scale-95 flex items-center gap-2">
+          사과게임 PLAY 🍎
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =======================================================================
+  [메인 콘텐츠] 사과게임 영역 (제한시간 15초 단축 버전)
+======================================================================= -->
+<main class="flex-grow flex flex-col items-center justify-center px-6 py-12 bg-brandDark">
+  <div class="max-w-4xl w-full text-center">
+    <h1 class="text-3xl md:text-4xl font-black tracking-tight text-white mb-2">
+      APPLE <span class="text-[#FF2E44]">CATCHER</span> 🍎
+    </h1>
+    <p class="text-gray-400 text-sm md:text-base mb-8 max-w-md mx-auto">
+      좌우 방향키나 마우스/터치로 바구니를 움직여 하늘에서 떨어지는 사과를 받아내세요! 황금 사과는 보너스 점수를 줍니다.
+    </p>
+
+    <!-- 게임 스코어 및 제어판 -->
+    <div class="bg-[#121212] border border-white/5 rounded-2xl p-6 max-w-lg mx-auto shadow-2xl backdrop-blur-sm">
+      <div class="flex justify-between items-center mb-4 px-2">
+        <div class="text-left">
+          <span class="text-xs font-bold tracking-wider text-gray-500 uppercase block">Score</span>
+          <span id="game-score" class="text-3xl font-black text-white">0</span>
+        </div>
+        <div class="text-right">
+          <span class="text-xs font-bold tracking-wider text-gray-500 uppercase block">Time Left</span>
+          <span id="game-timer" class="text-3xl font-black text-[#FF2E44]">10s</span>
+        </div>
+      </div>
+
+      <!-- 게임 캔버스 스테이지 -->
+      <div class="relative w-full aspect-[4/3] bg-[#0F0F0F] rounded-xl border border-white/5 overflow-hidden group select-none">
+        <canvas id="gameCanvas" class="w-full h-full block cursor-none"></canvas>
+
+        <!-- 스타트 / 게임오버 오버레이 시트 -->
+        <div id="game-overlay" class="absolute inset-0 bg-black/80 flex flex-col items-center justify-center p-6 transition-all duration-300">
+          <div id="overlay-content" class="transform transition-all scale-100 w-full max-w-xs text-center">
+            <span class="text-4xl mb-3 block animate-bounce">🍎</span>
+            <h2 id="overlay-title" class="text-2xl font-black text-white mb-2">사과 받기 게임 준비</h2>
+            <p id="overlay-desc" class="text-gray-400 text-xs md:text-sm mb-5 max-w-xs mx-auto">
+              제한 시간 10초 동안 최대한 많은 사과를 바구니에 담아 높은 점수를 기록해 보세요!
+            </p>
+            
+            <!-- 플레이어 닉네임 입력 필드 추가 -->
+            <div class="mb-5 text-left">
+              <label for="nickname" class="block text-[10px] font-bold text-gray-500 uppercase mb-1.5 tracking-wider">플레이어 닉네임</label>
+              <input type="text" id="nickname" class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF2E44] transition-colors" placeholder="닉네임을 입력하세요" value="GUEST_1" maxlength="12">
+            </div>
+
+            <button id="start-btn" class="w-full px-6 py-3 bg-[#FF2E44] text-white font-bold text-sm tracking-wide rounded-xl shadow-lg hover:bg-[#E02438] active:scale-95 transition-all duration-200 cursor-pointer">
+              게임 시작하기
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 모바일 전용 컨트롤 패드 (터치 조작 편의성) -->
+      <div class="grid grid-cols-2 gap-4 mt-4 md:hidden">
+        <button id="btn-left" class="bg-white/5 border border-white/5 text-white py-4 rounded-xl font-bold active:bg-white/10 select-none">◀ LEFT</button>
+        <button id="btn-right" class="bg-white/5 border border-white/5 text-white py-4 rounded-xl font-bold active:bg-white/10 select-none">RIGHT ▶</button>
+      </div>
+
+      <!-- 명예의 전당 랭킹보드 추가 -->
+      <div class="mt-8 border-t border-white/5 pt-6 text-left">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-lg">🏆</span>
+          <h3 class="text-sm font-bold text-white uppercase tracking-wider">명예의 전당 (TOP 10)</h3>
+        </div>
+        <div class="bg-[#0F0F0F] rounded-xl border border-white/5 overflow-hidden">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-white/5 text-gray-500 text-[10px] uppercase font-mono bg-white/5">
+                <th class="py-2.5 px-4 text-left font-semibold">순위</th>
+                <th class="py-2.5 px-4 text-left font-semibold">닉네임</th>
+                <th class="py-2.5 px-4 text-right font-semibold">점수</th>
+              </tr>
+            </thead>
+            <tbody id="ranking-list" class="divide-y divide-white/5 font-mono">
+              <!-- 명예의 전당 데이터 렌더링 영역 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<!-- =======================================================================
+  [공통 컴포넌트] 푸터 영역 (연락처 링크 대응)
+======================================================================= -->
+<footer id="footer" class="bg-[#121212] border-t border-white/5 py-12 px-6">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="text-center md:text-left">
+      <h4 class="text-lg font-extrabold text-white">HWANG GYUJIN</h4>
+      <p class="text-xs text-gray-500 mt-1">© 2026 Hwang Gyu Jin. All Rights Reserved.</p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4 text-xs text-gray-400 text-center md:text-right">
+      <div>
+        <span class="block text-gray-600">EMAIL</span>
+        <a href="mailto:ghkdrbwls99@gmail.com" class="hover:text-[#FF2E44] transition-colors">ghkdrbwls99@gmail.com</a>
+      </div>
+      <div>
+        <span class="block text-gray-600">CONTACT</span>
+        <a href="tel:010-6538-4774" class="hover:text-[#FF2E44] transition-colors">010-6538-4774</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- =======================================================================
+  [게임 전용 로직 스크립트] Vanilla JS Canvas Game
+======================================================================= -->
+<script>
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  const scoreEl = document.getElementById('game-score');
+  const timerEl = document.getElementById('game-timer');
+  const overlay = document.getElementById('game-overlay');
+  const startBtn = document.getElementById('start-btn');
+  const overlayTitle = document.getElementById('overlay-title');
+  const overlayDesc = document.getElementById('overlay-desc');
+  const btnLeft = document.getElementById('btn-left');
+  const btnRight = document.getElementById('btn-right');
+
+  // 랭킹 및 닉네임 엘리먼트 취득
+  const nicknameInput = document.getElementById('nickname');
+  const rankingListEl = document.getElementById('ranking-list');
+
+  // 내부 해상도 설정 (고해상도 대응 고정 좌표계)
+  const BASE_WIDTH = 800;
+  const BASE_HEIGHT = 600;
+  canvas.width = BASE_WIDTH;
+  canvas.height = BASE_HEIGHT;
+
+  // 게임 변수 (제한시간 10초 세팅)
+  let score = 0;
+  let timeLeft = 10;
+  let isPlaying = false;
+  let gameLoopId = null;
+  let timerId = null;
+  let currentPlayerNickname = 'GUEST_1'; // 현재 플레이어 닉네임 세션 변수
+
+  // 바구니 데이터
+  const basket = {
+    x: BASE_WIDTH / 2 - 60,
+    y: BASE_HEIGHT - 50,
+    width: 120,
+    height: 20,
+    speed: 12,
+    dx: 0
+  };
+
+  // 사과 배열 및 설정
+  let apples = [];
+  const APPLE_TYPES = {
+    RED: { color: '#FF2E44', score: 10, radius: 18, emoji: '🍎', speedMin: 3.5, speedMax: 6.5 },
+    GOLD: { color: '#FFD700', score: 30, radius: 18, emoji: '🍏', speedMin: 5.5, speedMax: 8.5 }
+  };
+
+  // 키보드 조작 이벤트 listen
+  const keys = { Left: false, Right: false };
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft' || e.key === 'Left') keys.Left = true;
+    if (e.key === 'ArrowRight' || e.key === 'Right') keys.Right = true;
+  });
+  document.addEventListener('keyup', (e) => {
+    if (e.key === 'ArrowLeft' || e.key === 'Left') keys.Left = false;
+    if (e.key === 'ArrowRight' || e.key === 'Right') keys.Right = false;
+  });
+
+  // 데스크톱 마우스 및 터치 트래킹 인터랙션
+  canvas.addEventListener('mousemove', (e) => {
+    if (!isPlaying) return;
+    const rect = canvas.getBoundingClientRect();
+    const root = document.documentElement;
+    const mouseX = e.clientX - rect.left - root.scrollLeft;
+    // 캔버스 크기 대비 실제 픽셀 비율 계산 반영
+    const scaleX = BASE_WIDTH / rect.width;
+    basket.x = (mouseX * scaleX) - (basket.width / 2);
+  });
+
+  // 모바일 전용 방향패드 이벤트 핸들러
+  btnLeft.addEventListener('touchstart', (e) => { e.preventDefault(); keys.Left = true; });
+  btnLeft.addEventListener('touchend', () => keys.Left = false);
+  btnRight.addEventListener('touchstart', (e) => { e.preventDefault(); keys.Right = true; });
+  btnRight.addEventListener('touchend', () => keys.Right = false);
+
+  // 사과 생성 함수
+  // 게임 시작 초기화 (10초 기준으로 게임 리셋)
+  function startGame() {
+    currentPlayerNickname = nicknameInput.value.trim() || 'GUEST_1';
+
+    score = 0;
+    timeLeft = 10;
+    apples = [];
+    basket.x = BASE_WIDTH / 2 - basket.width / 2;
+    scoreEl.innerText = score;
+    timerEl.innerText = timeLeft + 's';
+    isPlaying = true;
+    
+    overlay.classList.add('hidden');
+
+    // 기존 루프 및 타이머 초기화 안전장치
+    cancelAnimationFrame(gameLoopId);
+    clearInterval(timerId);
+
+    // 1초마다 시간 차감 및 사과 주기적 생성 패턴 적용
+    timerId = setInterval(() => {
+      timeLeft--;
+      timerEl.innerText = timeLeft + 's';
+      
+      if (timeLeft <= 0) {
+        endGame();
+      }
+    }, 1000);
+
+    // 프레임 루프 구동
+    update();
+  }
+
+  // 게임 종료 처리
+  function endGame() {
+    isPlaying = false;
+    clearInterval(timerId);
+    cancelAnimationFrame(gameLoopId);
+
+    overlayTitle.innerText = "GAME OVER";
+    overlayDesc.innerText = `${currentPlayerNickname}님의 최종 획득 스코어는 ${score}점 입니다!`;
+    startBtn.innerText = "다시 도전하기";
+    overlay.classList.remove('hidden');
+
+    // 점수 로컬스토리지 저장 및 명예의 전당 보드 갱신
+    saveScore(currentPlayerNickname, score);
+  }
+
+  // 로컬스토리지 스코어 저장 로직
+  function saveScore(nickname, finalScore) {
+    try {
+      let scores = JSON.parse(localStorage.getItem('apple_catcher_scores')) || [];
+      
+      // 동일한 닉네임이 존재하는지 탐색
+      const existingIndex = scores.findIndex(item => item.nickname === nickname);
+      
+      if (existingIndex !== -1) {
+        // 동일한 닉네임이 존재할 경우, 들어온 점수가 더 높은 경우만 덮어씀
+        if (finalScore > scores[existingIndex].score) {
+          scores[existingIndex].score = finalScore;
+          scores[existingIndex].date = new Date().toISOString().split('T')[0];
+        }
+      } else {
+        // 처음 플레이하는 신규 닉네임은 스코어 정보 그대로 푸시
+        scores.push({
+          nickname: nickname,
+          score: finalScore,
+          date: new Date().toISOString().split('T')[0]
+        });
+      }
+
+      // 점수 내림차순 정렬 후 상위 10개만 보존
+      scores.sort((a, b) => b.score - a.score);
+      scores = scores.slice(0, 10);
+
+      localStorage.setItem('apple_catcher_scores', JSON.stringify(scores));
+      renderRankings();
+    } catch (e) {
+      console.error('로컬스토리지 점수 저장 중 에러 발생:', e);
+    }
+  }
+
+  // 명예의 전당 랭킹 렌더링 로직
+  function renderRankings() {
+    try {
+      const scores = JSON.parse(localStorage.getItem('apple_catcher_scores')) || [];
+      rankingListEl.innerHTML = '';
+
+      if (scores.length === 0) {
+        rankingListEl.innerHTML = `
+          <tr>
+            <td colspan="3" class="py-4 text-center text-gray-500 text-xs font-sans">등록된 명예의 전당 기록이 없습니다.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      scores.forEach((item, index) => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-white/[0.02] transition-colors";
+
+        let medal = `${index + 1}`;
+        let textClass = 'text-gray-400';
+
+        // 상위 3명에게 메달 이펙트 및 하이라이트 부여
+        if (index === 0) { medal = '🥇'; textClass = 'text-yellow-400 font-bold'; }
+        else if (index === 1) { medal = '🥈'; textClass = 'text-gray-300 font-bold'; }
+        else if (index === 2) { medal = '🥉'; textClass = 'text-amber-600 font-bold'; }
+
+        tr.innerHTML = `
+          <td class="py-2.5 px-4 text-left font-semibold ${textClass}">${medal}</td>
+          <td class="py-2.5 px-4 text-left text-gray-200 max-w-[120px] truncate" title="${item.nickname}">${item.nickname}</td>
+          <td class="py-2.5 px-4 text-right text-white font-bold">${item.score} 점</td>
+        `;
+        rankingListEl.appendChild(tr);
+      });
+    } catch (e) {
+      console.error('랭킹 렌더링 중 에러 발생:', e);
+    }
+  }
+
+  // 초기 페이지 로드 시 명예의 전당 렌더링 실행
+  document.addEventListener('DOMContentLoaded', renderRankings);
+
+  // 업데이트 및 렌더링 프레임 루프
+  function update() {
+    if (!isPlaying) return;
+
+    // 바구니 키보드 이동 로직
+    if (keys.Left) basket.x -= basket.speed;
+    if (keys.Right) basket.x += basket.speed;
+
+    // 화면 경계 이탈 방지 벽면 바운더리 검사
+    if (basket.x < 0) basket.x = 0;
+    if (basket.x > BASE_WIDTH - basket.width) basket.x = BASE_WIDTH - basket.width;
+
+    // 캔버스 클리어 및 프레임 갱신
+    ctx.clearRect(0, 0, BASE_WIDTH, BASE_HEIGHT);
+
+    // 일정 확률 패턴에 기반한 사과 지속 드랍
+    if (Math.random() < 0.04) {
+      createApple();
+    }
+
+    // 사과 렌더링 및 충돌 계산 루프
+    for (let i = apples.length - 1; i >= 0; i--) {
+      const apple = apples[i];
+      apple.y += apple.speed;
+
+      // 그래픽스 드로잉: 예쁜 이모지 매핑 및 가시성 보강
+      ctx.save();
+      ctx.globalAlpha = 1.0; // 투명도 제거: 100% 불투명하도록 명시적 설정
+      ctx.shadowColor = 'rgba(255, 255, 255, 0.55)'; // 어두운 화면에서 돋보이도록 흰색 야광 광원 이펙트 추가
+      ctx.shadowBlur = 10; // 블러를 주어 더 선명하게 돋보이게 처리
+      ctx.font = "40px serif"; // 사과 이모지 크기를 기존 32px에서 40px로 키워 시인성 대폭 확장
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(apple.emoji, apple.x, apple.y);
+      ctx.restore(); // 드로잉 설정 리셋
+
+      // 충돌 감지 (바구니 수집 조건문 체크)
+      if (
+        apple.y + apple.radius >= basket.y &&
+        apple.y - apple.radius <= basket.y + basket.height &&
+        apple.x >= basket.x &&
+        apple.x <= basket.x + basket.width
+      ) {
+        score += apple.score;
+        scoreEl.innerText = score;
+        apples.splice(i, 1);
+        continue;
+      }
+
+      // 화면 하단 경계 이탈 시 배열 리소스 정리
+      if (apple.y > BASE_HEIGHT + 20) {
+        apples.splice(i, 1);
+      }
+    }
+
+    // 바구니 스타일링 렌더링 (애플 레드 액센트 테마 스타일 디자인)
+    ctx.fillStyle = '#FF2E44';
+    ctx.beginPath();
+    ctx.roundRect(basket.x, basket.y, basket.width, basket.height, 10);
+    ctx.fill();
+
+    // 바구니 상단 은은한 하이라이트 레이어 추가
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+    ctx.fillRect(basket.x + 10, basket.y + 3, basket.width - 20, 3);
+
+    // 반복 프레임 요청 호출 재귀 구조 연동
+    gameLoopId = requestAnimationFrame(update);
+  }
+
+  // 스타트 버튼 리스너 바인딩
+  startBtn.addEventListener('click', startGame);
+</script>
+
+</body>
+</html>
